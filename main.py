@@ -62,3 +62,4 @@ async def lenguajes_programacion(lenguaje: LengujesProgracion):
 @app.post("/person")
 def create_person(person: Person):
     return person
+    
