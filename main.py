@@ -1,3 +1,5 @@
+from fastapi import Cookie
+from fastapi import Header
 from fastapi import FastAPI
 from enum import Enum
 from app.request import Person
@@ -62,4 +64,24 @@ async def lenguajes_programacion(lenguaje: LengujesProgracion):
 @app.post("/person")
 def create_person(person: Person):
     return person
-    
+
+
+# Cookies
+
+
+@app.get("/cookies")
+async def read_cookies(ads_id: str | None = Cookie(default=None)):
+    return {"ads_id": ads_id}
+
+
+# headers
+
+
+@app.get("/headers")
+async def read_headers(user_agent: str | None = Header(default=None),
+                       x_token: list[str] | None = Header(default=None)):
+
+    return {
+        "User-Agent": user_agent,
+        "X-Token values": x_token
+    }
